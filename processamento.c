@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <tchar.h>
+#include <string.h>
 
 void RefreshDirectory(LPTSTR);
 void RefreshTree(LPTSTR);
@@ -130,6 +131,16 @@ void RefreshDirectory(LPTSTR lpDir)
   // would not be necessary.
 
   _tprintf(TEXT("Directory (%s) changed.\n"), lpDir);
+  FILE *req;
+  char linha[1024];
+
+  req = fopen("./../comunicacao/req.txt", "r");
+
+  fgets(linha, sizeof(linha), req);
+
+  printf("%s\n", linha);
+
+  fclose(req);
 }
 
 void RefreshTree(LPTSTR lpDrive)
